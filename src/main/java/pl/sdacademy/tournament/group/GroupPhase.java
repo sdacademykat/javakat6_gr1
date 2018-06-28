@@ -1,16 +1,21 @@
 package pl.sdacademy.tournament.group;
 
+import javafx.scene.layout.Pane;
 import pl.sdacademy.tournament.match.Match;
 import pl.sdacademy.tournament.team.Team;
 import pl.sdacademy.tournament.TournamentPhase;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class GroupPhase implements TournamentPhase {
     private List<Group> groups;
     private boolean finished;
     private int currentRound;
+
 
     public GroupPhase(List<Group> groups) {
         this.groups = groups;
@@ -22,6 +27,17 @@ public class GroupPhase implements TournamentPhase {
 
     public int getCurrentRound() {
         return currentRound;
+    }
+
+    public void addData(Match match) {
+        Optional<Group> optionalGroup = groups.stream()
+                .filter(group -> group.getTeams().contains(match.getTeam1()))
+                .findFirst();
+        if(optionalGroup.isPresent()) {
+            Group group = optionalGroup.get();
+            group.addMatch(match);
+        }
+
     }
 
     public void generateNextRoundMatches() {

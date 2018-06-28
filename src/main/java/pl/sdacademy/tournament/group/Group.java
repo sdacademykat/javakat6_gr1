@@ -32,6 +32,36 @@ public class Group {
         matchesByRound.put(round, matches);
     }
 
+    private int getCurrentRound() {
+        int currentRound = - 1;
+        for (int i = 0; i <= 2; i++) {
+            if (matchesByRound.containsKey(i)) {
+                currentRound = i;
+                if (matchesByRound.get(i).size() > 1){
+                    currentRound += 1;
+                }
+            }
+        }
+        return currentRound;
+    }
+
+
+    public void addMatch(Match match) {
+        int currentRound = getCurrentRound();
+        List<Match> roundMatches;
+        if (matchesByRound.containsKey(currentRound)) {
+            roundMatches = matchesByRound.get(currentRound);
+        } else {
+            if (currentRound < 0) {
+                currentRound = 0;
+            }
+            roundMatches = new ArrayList<>();
+
+        }
+        roundMatches.add(match);
+        matchesByRound.put(currentRound, roundMatches);
+    }
+
     public List<Match> getMatches(int round) {
         return matchesByRound.get(round);
     }
@@ -58,7 +88,9 @@ public class Group {
     public List<Match> getMatchesForTeam(Team team) {
         return getAllMatches().stream()
                 .filter(m -> m.getTeam1() == team
-                    || m.getTeam2() == team)
+                        || m.getTeam2() == team)
                 .collect(Collectors.toList());
     }
+
+
 }

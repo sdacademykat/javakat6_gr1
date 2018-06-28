@@ -2,6 +2,9 @@ package pl.sdacademy.tournament;
 
 import pl.sdacademy.tournament.group.Group;
 import pl.sdacademy.tournament.group.GroupPhase;
+import pl.sdacademy.tournament.match.Match;
+import pl.sdacademy.tournament.match.MatchEvent;
+import pl.sdacademy.tournament.match.MatchEventType;
 import pl.sdacademy.tournament.team.Person;
 import pl.sdacademy.tournament.team.Team;
 
@@ -46,12 +49,43 @@ public class Main {
         GroupPhase groupPhase = new GroupPhase(Arrays.asList(group));
 
         System.out.println(group);
-        while(!groupPhase.isFinished()) {
-            groupPhase.generateNextRoundMatches();
-            System.out.println(group);
-            group.getMatches(groupPhase.getCurrentRound())
-                    .forEach(System.out::println);
-            System.out.println('\n');
-        }
+//        while(!groupPhase.isFinished()) {
+//            groupPhase.generateNextRoundMatches();
+//            System.out.println(group);
+//            group.getMatches(groupPhase.getCurrentRound())
+//                    .forEach(System.out::println);
+//            System.out.println('\n');
+//        }
+        Match match = new Match(poland, brazil, Arrays.asList(
+                new MatchEvent(MatchEventType.GOAL, poland.getPlayers().get(0), 50)
+        ));
+        Match match1 = new Match(argentina, germany, Arrays.asList(
+                new MatchEvent(MatchEventType.GOAL, germany.getPlayers().get(3), 19),
+                new MatchEvent(MatchEventType.GOAL, argentina.getPlayers().get(0), 45)
+        ));
+        Match match2 = new Match(argentina, poland, Arrays.asList(
+                new MatchEvent(MatchEventType.GOAL, poland.getPlayers().get(3), 19)
+        ));
+        Match match3 = new Match(brazil, germany, Arrays.asList(
+                new MatchEvent(MatchEventType.GOAL, germany.getPlayers().get(3), 19),
+                new MatchEvent(MatchEventType.GOAL, germany.getPlayers().get(0), 45)
+        ));
+
+        Match match4 = new Match(poland, germany, Arrays.asList(
+                new MatchEvent(MatchEventType.GOAL, germany.getPlayers().get(3), 19),
+                new MatchEvent(MatchEventType.GOAL, germany.getPlayers().get(0), 45)
+        ));
+
+        Match match5 = new Match(argentina, brazil, Arrays.asList(
+                new MatchEvent(MatchEventType.GOAL, brazil.getPlayers().get(3), 19),
+                new MatchEvent(MatchEventType.GOAL, argentina.getPlayers().get(0), 45)
+        ));
+        groupPhase.addData(match);
+        groupPhase.addData(match1);
+        groupPhase.addData(match2);
+        groupPhase.addData(match3);
+        groupPhase.addData(match4);
+        groupPhase.addData(match5);
+        System.out.println(group);
     }
 }

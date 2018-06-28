@@ -3,6 +3,7 @@ package pl.sdacademy.tournament.match;
 import pl.sdacademy.tournament.team.Person;
 import pl.sdacademy.tournament.team.Team;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,6 +18,13 @@ public class Match {
         this.team2 = team2;
         randomizeEvents();
     }
+
+    public Match(Team team1, Team team2, List<MatchEvent> events){
+        this.team1 = team1;
+        this.team2 = team2;
+        this.events = events;
+    }
+
 
     public Team getTeam1() {
         return team1;
@@ -44,6 +52,7 @@ public class Match {
                         && e.getType() == MatchEventType.GOAL)
                 .count();
     }
+
 
     public void randomizeEvents() {
         events = new ArrayList<>();
