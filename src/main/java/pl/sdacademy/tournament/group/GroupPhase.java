@@ -25,6 +25,7 @@ public class GroupPhase implements TournamentPhase {
     }
 
     public void generateNextRoundMatches() {
+        currentRound++;
         groups.forEach(this::generateNextRoundMatches);
     }
 
@@ -34,7 +35,6 @@ public class GroupPhase implements TournamentPhase {
         Team team3;
         Team team4;
         List<Team> teams = group.getTeams();
-        currentRound++;
         if (currentRound == 1) {
             team1 = teams.get(0);
             team2 = teams.get(1);

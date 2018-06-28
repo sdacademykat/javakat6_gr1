@@ -45,16 +45,16 @@ public class GroupTeamStatistics implements Comparable<GroupTeamStatistics> {
         return goalsScored - goalsLost;
     }
 
-    private String addRightPadding(String text, int length) {
+    private String addLeftPadding(String text, int length) {
         return String.format("%" + length + "." + length + "s", text);
     }
 
-    private String addLeftPadding(String text, int length) {
+    private String addRightPadding(String text, int length) {
         return String.format("%-" + length + "." + length + "s", text);
     }
 
-    private String addRightPadding(int value, int length) {
-        return addRightPadding(Integer.toString(value), length);
+    private String addLeftPadding(int value, int length) {
+        return addLeftPadding(Integer.toString(value), length);
     }
 
     @Override
@@ -70,10 +70,10 @@ public class GroupTeamStatistics implements Comparable<GroupTeamStatistics> {
 
     @Override
     public String toString() {
-        return addLeftPadding(team.getName(), 20) + " | " +
-                addRightPadding(points, 3) + " | " +
-                addRightPadding(goalsScored - goalsLost, 3) + " | " +
-                addRightPadding(goalsScored, 3) + " | " +
-                addRightPadding(goalsLost, 3) + "\n";
+        return addRightPadding(team.getName(), 20) + " | " +
+                addLeftPadding(points, 3) + " | " +
+                addLeftPadding(goalsScored - goalsLost, 3) + " | " +
+                addLeftPadding(goalsScored, 3) + " | " +
+                addLeftPadding(goalsLost, 3) + "\n";
     }
 }

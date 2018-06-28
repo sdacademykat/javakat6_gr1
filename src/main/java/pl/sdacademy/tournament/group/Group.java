@@ -28,8 +28,8 @@ public class Group {
         return teams;
     }
 
-    public void setMatchesForRound(int round, List<Match> match) {
-        matchesByRound.put(round, match);
+    public void setMatchesForRound(int round, List<Match> matches) {
+        matchesByRound.put(round, matches);
     }
 
     public List<Match> getMatches(int round) {

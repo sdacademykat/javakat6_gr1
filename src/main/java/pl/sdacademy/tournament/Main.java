@@ -43,7 +43,8 @@ public class Main {
         Group group = new Group("Grupa X", Arrays.asList(
                 poland, germany, brazil, argentina
         ));
-        GroupPhase groupPhase = new GroupPhase(Collections.singletonList(group));
+        GroupPhase groupPhase = new GroupPhase(Arrays.asList(group));
+
         System.out.println(group);
         while(!groupPhase.isFinished()) {
             groupPhase.generateNextRoundMatches();
